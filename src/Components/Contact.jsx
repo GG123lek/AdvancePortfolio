@@ -3,41 +3,35 @@ import { FaEnvelope, FaMapMarkedAlt, FaPhone } from "react-icons/fa";
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     const { name, email, message } = formData;
 
-    // Basic email validation
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      setError("Please enter a valid email address.");
+    // Basic validation
+    if (!name || !email || !message) {
+      alert("Please fill in all fields.");
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:5000/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      if (response.ok) {
-        setSuccess("Your message has been sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setError("Failed to send message. Please try again.");
-      }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
     }
+
+    // Construct mailto link
+    const mailtoLink = `mailto:ridw5613@gmail.com,gafar@tm30.dev?subject=Message from ${encodeURIComponent(
+      name
+    )}&body=Email: ${encodeURIComponent(email)}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+
+    // Open mail client
+    window.location.href = mailtoLink;
   };
 
   return (
@@ -119,8 +113,6 @@ const Contact = () => {
                 Send
               </button>
             </form>
-            {error && <p className="text-red-500 mt-4">{error}</p>}
-            {success && <p className="text-green-500 mt-4">{success}</p>}
           </div>
         </div>
       </div>
