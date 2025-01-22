@@ -25,12 +25,12 @@ const Contact = () => {
       return;
     }
 
-    // Construct mailto link
+    // Construct mailto link with dynamic email and predefined recipients
     const mailtoLink = `mailto:ridw5613@gmail.com,gafar@tm30.dev?subject=Message from ${encodeURIComponent(
       name
-    )}&body=Email: ${encodeURIComponent(email)}%0D%0A%0D%0A${encodeURIComponent(message)}`;
+    )}&body=Sender Email: ${encodeURIComponent(email)}%0D%0A%0D%0A${encodeURIComponent(message)}`;
 
-    // Open mail client
+    // Open mail client (Gmail, Zoho, etc.) for the user
     window.location.href = mailtoLink;
   };
 
