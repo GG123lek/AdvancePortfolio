@@ -1,37 +1,42 @@
-
-
 const services = [
   {
     id: 1,
     title: "Web Design",
     description: "Creating visually appealing and user-friendly web designs.",
+    link: "https://www.google.com/search?q=web+design", 
   },
   {
     id: 2,
     title: "Frontend Development",
     description: "Building responsive and interactive user interfaces.",
+    link: "https://www.google.com/search?q=frontend+development", 
   },
   {
     id: 3,
     title: "Backend Development",
     description: "Developing robust server-side logic and databases.",
+    link: "https://www.google.com/search?q=backend+development", 
   },
   {
     id: 4,
     title: "Full-Stack Development",
     description: "Combining both frontend and backend development skills.",
+    link: "https://www.google.com/search?q=full-stack+development", 
   },
   {
     id: 5,
     title: "Content Writing",
     description: "Writing content for your business and companies.",
+    link: "https://www.google.com/search?q=content+writing", 
   },
   {
     id: 6,
     title: "Digital Marketing",
     description: "Promote your business with our digital marketing team.",
+    link: "https://www.google.com/search?q=digital+marketing", 
   },
 ];
+
 const Service = () => {
   return (
     <div className="bg-black text-white py-20" id="service">
@@ -55,7 +60,14 @@ const Service = () => {
                 {service.title}
               </h3>
               <p className="mt-2 text-gray-300">{service.description}</p>
-              <a href="#" className="mt-4 inline-block text-green-400 hover:text-blue-500">Read More</a>
+              <a 
+                href={service.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-4 inline-block text-green-400 hover:text-blue-500"
+              >
+                Read More
+              </a>
             </div>
           ))}
         </div>
