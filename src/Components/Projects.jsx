@@ -22,7 +22,7 @@ const projects = [
     id: 3,
     name: "suleiman-shopping",
     technologies: "React.js",
-    images: sulMSImage,
+    image: sulMSImage,
     github: "https://github.com/GG123lek/internProject"
   },
   
