@@ -1,10 +1,21 @@
+import { useState } from "react";
+
 function Navbar() {
+  const [selectedPlatform, setSelectedPlatform] = useState("");
+
+  const platforms = {
+    facebook: "https://facebook.com",
+    twitter: "https://twitter.com",
+    instagram: "https://instagram.com",
+    linkedin: "https://linkedin.com",
+  };
+
   const handleConnect = () => {
-    // Open multiple social media platforms
-    window.open("https://facebook.com", "_blank");
-    window.open("https://twitter.com", "_blank");
-    window.open("https://instagram.com", "_blank");
-    window.open("https://linkedin.com", "_blank");
+    if (selectedPlatform && platforms[selectedPlatform]) {
+      window.open(platforms[selectedPlatform], "_blank");
+    } else {
+      alert("Please select a platform to connect!");
+    }
   };
 
   return (
@@ -18,13 +29,28 @@ function Navbar() {
           <a href="#projects" className="hover:text-gray-400">Projects</a>
           <a href="#contact" className="hover:text-gray-400">Contacts</a>
         </div>
-        <button
-          onClick={handleConnect}
-          className="bg-gradient-to-r from-green-400 to-blue-500 text-white hidden md:inline
-          transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
-        >
-          Connect Me
-        </button>
+        <div className="hidden md:flex items-center space-x-4">
+          <select
+            value={selectedPlatform}
+            onChange={(e) => setSelectedPlatform(e.target.value)}
+            className="px-4 py-2 rounded bg-gray-800 text-white"
+          >
+            <option value="" disabled>
+              Select Platform
+            </option>
+            <option value="facebook">Facebook</option>
+            <option value="twitter">Twitter</option>
+            <option value="instagram">Instagram</option>
+            <option value="linkedin">LinkedIn</option>
+          </select>
+          <button
+            onClick={handleConnect}
+            className="bg-gradient-to-r from-green-400 to-blue-500 text-white
+            transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
+          >
+            Connect Me
+          </button>
+        </div>
       </div>
     </nav>
   );
