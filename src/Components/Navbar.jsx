@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Navbar() {
-  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [showOptions, setShowOptions] = useState(false);
 
   const platforms = {
     facebook: "https://facebook.com",
@@ -10,12 +10,9 @@ function Navbar() {
     linkedin: "https://linkedin.com",
   };
 
-  const handleConnect = () => {
-    if (selectedPlatform && platforms[selectedPlatform]) {
-      window.open(platforms[selectedPlatform], "_blank");
-    } else {
-      alert("Please select a platform to connect!");
-    }
+  const handleOptionClick = (platform) => {
+    window.open(platforms[platform], "_blank"); // Open the selected platform
+    setShowOptions(false); // Hide the dropdown after selection
   };
 
   return (
@@ -29,27 +26,29 @@ function Navbar() {
           <a href="#projects" className="hover:text-gray-400">Projects</a>
           <a href="#contact" className="hover:text-gray-400">Contacts</a>
         </div>
-        <div className="hidden md:flex items-center space-x-4">
-          <select
-            value={selectedPlatform}
-            onChange={(e) => setSelectedPlatform(e.target.value)}
-            className="px-4 py-2 rounded bg-gray-800 text-white"
-          >
-            <option value="" disabled>
-              Select Platform
-            </option>
-            <option value="facebook">Facebook</option>
-            <option value="twitter">Twitter</option>
-            <option value="instagram">Instagram</option>
-            <option value="linkedin">LinkedIn</option>
-          </select>
+        <div className="relative">
           <button
-            onClick={handleConnect}
-            className="bg-gradient-to-r from-green-400 to-blue-500 text-white
+            onClick={() => setShowOptions((prev) => !prev)}
+            className="bg-gradient-to-r from-green-400 to-blue-500 text-white hidden md:inline
             transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
           >
             Connect Me
           </button>
+
+          {/* Dropdown Options */}
+          {showOptions && (
+            <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg">
+              {Object.keys(platforms).map((platform) => (
+                <div
+                  key={platform}
+                  onClick={() => handleOptionClick(platform)}
+                  className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                >
+                  {platform.charAt(0).toUpperCase() + platform.slice(1)}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </nav>
