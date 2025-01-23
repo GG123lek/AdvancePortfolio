@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 function Navbar() {
-  const [showMenu, setShowMenu] = useState(false); // State for hamburger menu
-  const [showOptions, setShowOptions] = useState(false); // State for "Connect Me" options
+  const [showMenu, setShowMenu] = useState(false); 
+  const [showOptions, setShowOptions] = useState(false); 
 
   const platforms = {
     facebook: "https://facebook.com",
@@ -19,16 +19,16 @@ function Navbar() {
   return (
     <nav className="bg-black text-white px-8 md:px-16 lg:px-24">
       <div className="container py-4 flex justify-between items-center">
-        {/* Logo */}
+      
         <div className="text-2xl font-bold">Gafar</div>
 
-        {/* Hamburger Icon for Mobile */}
+       
         <div className="md:hidden">
           <button
             onClick={() => setShowMenu((prev) => !prev)}
             className="focus:outline-none"
           >
-            {/* Hamburger icon */}
+          
             <svg
               className="w-6 h-6 text-white"
               fill="none"
@@ -46,7 +46,7 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Navigation Links for Larger Screens */}
+      
         <div className="hidden md:flex space-x-6">
           <a href="#home" className="hover:text-gray-400">Home</a>
           <a href="#about" className="hover:text-gray-400">About Me</a>
@@ -55,7 +55,7 @@ function Navbar() {
           <a href="#contact" className="hover:text-gray-400">Contacts</a>
         </div>
 
-        {/* Connect Me Button */}
+       
         <div className="relative hidden md:inline">
           <button
             onClick={() => setShowOptions((prev) => !prev)}
@@ -65,7 +65,7 @@ function Navbar() {
             Connect Me
           </button>
 
-          {/* Dropdown Options */}
+        
           {showOptions && (
             <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg">
               {Object.keys(platforms).map((platform) => (
@@ -82,7 +82,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      
       {showMenu && (
         <div className="md:hidden mt-4 space-y-4">
           <a href="#home" className="block hover:text-gray-400">Home</a>
@@ -99,7 +99,7 @@ function Navbar() {
               Connect Me
             </button>
 
-            {/* Dropdown Options */}
+           
             {showOptions && (
               <div className="absolute left-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg">
                 {Object.keys(platforms).map((platform) => (
