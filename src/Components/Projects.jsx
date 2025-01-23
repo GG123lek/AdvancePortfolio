@@ -1,7 +1,7 @@
 
 import employeeMSImage from "../assets/collection portal image.webp";
 import bookMSImage from "../assets/startup-new image.png";
-import sulMSImage from "../assets/cartimage.webp";
+import sulMSImage from "../assets/online.webp";
 
 const projects = [
   {
