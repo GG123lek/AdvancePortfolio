@@ -1,6 +1,7 @@
 
 import employeeMSImage from "../assets/collection portal image.webp";
 import bookMSImage from "../assets/startup-new image.png";
+import SuleimansImage from "../assets/suleimanshopping.webp";
 
 const projects = [
   {
@@ -16,6 +17,13 @@ const projects = [
     technologies: "React.js",
     image: bookMSImage,
     github: "https://github.com/GG123lek/startup_new",
+  },
+  {
+    id: 3,
+    name: "suleiman-shopping",
+    technologies: "React.js",
+    images: SuleimansImage,
+    github: "https://github.com/GG123lek/internProject"
   },
   
 ];

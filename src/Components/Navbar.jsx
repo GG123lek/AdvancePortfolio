@@ -11,8 +11,8 @@ function Navbar() {
   };
 
   const handleOptionClick = (platform) => {
-    window.open(platforms[platform], "_blank"); // Open the selected platform
-    setShowOptions(false); // Hide the dropdown after selection
+    window.open(platforms[platform], "_blank"); 
+    setShowOptions(false); 
   };
 
   return (
@@ -35,7 +35,7 @@ function Navbar() {
             Connect Me
           </button>
 
-          {/* Dropdown Options */}
+        
           {showOptions && (
             <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg">
               {Object.keys(platforms).map((platform) => (
