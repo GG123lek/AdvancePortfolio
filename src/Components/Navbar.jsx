@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ScrollReveal from "../Components/ScrollReveal"; // Adjust path as needed
 
 function Navbar() {
-  const [showMenu, setShowMenu] = useState(false); 
-  const [showOptions, setShowOptions] = useState(false); 
+  const [showMenu, setShowMenu] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
 
   const platforms = {
     facebook: "https://facebook.com",
@@ -16,19 +17,32 @@ function Navbar() {
     setShowOptions(false);
   };
 
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest(".dropdown")) {
+        setShowOptions(false);
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
     <nav className="bg-black text-white px-8 md:px-16 lg:px-24">
       <div className="container py-4 flex justify-between items-center">
-      
-        <div className="text-2xl font-bold">Gafar</div>
 
-       
+        {/* Brand */}
+        <ScrollReveal direction="down">
+          <div className="text-2xl font-bold">Gafar</div>
+        </ScrollReveal>
+
+        {/* Mobile menu icon */}
         <div className="md:hidden">
           <button
             onClick={() => setShowMenu((prev) => !prev)}
             className="focus:outline-none"
           >
-          
             <svg
               className="w-6 h-6 text-white"
               fill="none"
@@ -46,28 +60,29 @@ function Navbar() {
           </button>
         </div>
 
-      
-        <div className="hidden md:flex space-x-6">
+        {/* Desktop Nav Links */}
+        <ScrollReveal direction="down" delay={0.1} className="hidden md:flex space-x-6">
           <a href="#home" className="hover:text-gray-400">Home</a>
           <a href="#about" className="hover:text-gray-400">About Me</a>
           <a href="#service" className="hover:text-gray-400">Services</a>
           <a href="#projects" className="hover:text-gray-400">Projects</a>
           <a href="#contact" className="hover:text-gray-400">Contacts</a>
-        </div>
+        </ScrollReveal>
 
-       
-        <div className="relative hidden md:inline">
-          <button
-            onClick={() => setShowOptions((prev) => !prev)}
-            className="bg-gradient-to-r from-green-400 to-blue-500 text-white
-            transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
-          >
-            Connect Me
-          </button>
+        {/* Desktop Connect Me Dropdown */}
+        <div className="relative hidden md:inline dropdown">
+          <ScrollReveal direction="down" delay={0.2}>
+            <button
+              onClick={() => setShowOptions((prev) => !prev)}
+              className="bg-gradient-to-r from-green-400 to-blue-500 text-white
+              transform transition-transform duration-300 hover:scale-105 px-4 py-2 rounded-full"
+            >
+              Connect Me
+            </button>
+          </ScrollReveal>
 
-        
           {showOptions && (
-            <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg">
+            <div className="absolute right-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg z-50">
               {Object.keys(platforms).map((platform) => (
                 <div
                   key={platform}
@@ -82,9 +97,9 @@ function Navbar() {
         </div>
       </div>
 
-      
+      {/* Mobile Dropdown Menu */}
       {showMenu && (
-        <div className="md:hidden mt-4 space-y-4">
+        <div className="md:hidden mt-4 space-y-4 dropdown">
           <a href="#home" className="block hover:text-gray-400">Home</a>
           <a href="#about" className="block hover:text-gray-400">About Me</a>
           <a href="#service" className="block hover:text-gray-400">Services</a>
@@ -99,9 +114,8 @@ function Navbar() {
               Connect Me
             </button>
 
-           
             {showOptions && (
-              <div className="absolute left-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg">
+              <div className="absolute left-0 mt-2 w-48 bg-gray-800 text-white rounded shadow-lg z-50">
                 {Object.keys(platforms).map((platform) => (
                   <div
                     key={platform}

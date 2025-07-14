@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaEnvelope, FaMapMarkedAlt, FaPhone } from "react-icons/fa";
+import ScrollReveal from "../Components/ScrollReveal"; // path may vary
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -14,7 +15,6 @@ const Contact = () => {
 
     const { name, email, message } = formData;
 
-    
     if (!name || !email || !message) {
       alert("Please fill in all fields.");
       return;
@@ -25,44 +25,51 @@ const Contact = () => {
       return;
     }
 
-   
     const mailtoLink = `mailto:ridw5613@gmail.com,gafar@tm30.dev?subject=Message from ${encodeURIComponent(
       name
     )}&body=Sender Email: ${encodeURIComponent(email)}%0D%0A%0D%0A${encodeURIComponent(message)}`;
 
-   
     window.location.href = mailtoLink;
   };
 
   return (
     <div className="bg-black text-white py-20" id="contact">
       <div className="container mx-auto px-8 md:px-16 lg:px-24">
-        <h2 className="text-4xl font-bold text-center mb-12">Contact Me</h2>
+        <ScrollReveal direction="up">
+          <h2 className="text-4xl font-bold text-center mb-12">Contact Me</h2>
+        </ScrollReveal>
+
         <div className="flex flex-col md:flex-row items-center md:space-x-12">
-          <div className="flex-1">
-            <h3
-              className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r 
-            from-green-400 to-blue-500 mb-4"
-            >
-              Let's Talk
-            </h3>
-            <p>I'm open to discussing web development projects or partnership opportunities.</p>
-            <div className="mb-4 mt-8">
-              <FaEnvelope className="inline-block text-green-400 mr-2" />
-              <a href="mailto:ridw5613@gmail.com" className="hover:underline">
-                ridw5613@gmail.com
-              </a>
+          <ScrollReveal direction="left" className="flex-1">
+            <div>
+              <h3
+                className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r 
+              from-green-400 to-blue-500 mb-4"
+              >
+                Let's Talk
+              </h3>
+              <p>I'm open to discussing web development projects or partnership opportunities.</p>
+
+              <div className="mb-4 mt-8">
+                <FaEnvelope className="inline-block text-green-400 mr-2" />
+                <a href="mailto:ridw5613@gmail.com" className="hover:underline">
+                  ridw5613@gmail.com
+                </a>
+              </div>
+
+              <div className="mb-4">
+                <FaPhone className="inline-block text-green-400 mr-2" />
+                <span>09110145434</span>
+              </div>
+
+              <div className="mb-4">
+                <FaMapMarkedAlt className="inline-block text-green-400 mr-2" />
+                <span>orchid road, lagos, eleganza, nigeria</span>
+              </div>
             </div>
-            <div className="mb-4">
-              <FaPhone className="inline-block text-green-400 mr-2" />
-              <span>09110145434</span>
-            </div>
-            <div className="mb-4">
-              <FaMapMarkedAlt className="inline-block text-green-400 mr-2" />
-              <span>orchid road, lagos, eleganza, nigeria</span>
-            </div>
-          </div>
-          <div className="flex-1 w-full">
+          </ScrollReveal>
+
+          <ScrollReveal direction="right" className="flex-1 w-full">
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block mb-2">
@@ -113,7 +120,7 @@ const Contact = () => {
                 Send
               </button>
             </form>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </div>
